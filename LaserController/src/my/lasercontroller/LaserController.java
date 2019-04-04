@@ -442,7 +442,6 @@ public class LaserController extends javax.swing.JFrame {
          * including the paradigm for each channel.
          * Should receive a confirmation from Arduino
          */
-        String message = "message";
     }
     
     public void sendData(String message){
