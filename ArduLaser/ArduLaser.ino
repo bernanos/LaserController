@@ -32,7 +32,7 @@ unsigned long laser1Time;
 int values1[5];
 int power1 = 100;
 int pwr1;
-int epoch1[] = {1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0};
+int epoch1[] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
 // Laser 2 parameters
 int duration2 = 20;
