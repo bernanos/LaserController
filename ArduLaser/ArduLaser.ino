@@ -88,7 +88,7 @@ void loop() {
   
   if(execute) {
     // Mapping power output
-    // pwr2 = map(power2, 0, 100, 0, 255);
+    pwr2 = map(power2, 0, 100, 0, 255);
     
     if(!startSet) {
       // Setting start time
@@ -115,7 +115,7 @@ void loop() {
     if(epoch1[c] == 1) {
       if(laser1_On) {
         if(!time1Set) {
-          analogWrite(laser1, pwr1);
+          analogWrite(laser1, power1);
           laser1Time = millis();
           time1Set = true;
         }
