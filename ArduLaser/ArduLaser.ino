@@ -77,7 +77,7 @@ void testLaser1(String message){
   }
 
   if(vi>0){
-    power1 = values1[2];
+    power1 = map(values1[2], 0, 100, 0, 255);
     duration1 = values1[3];
     interval1 = 1000/values1[4];
     execute = true;
@@ -88,8 +88,7 @@ void loop() {
   
   if(execute) {
     // Mapping power output
-    pwr1 = map(power1, 0, 100, 0, 255);
-    pwr2 = map(power2, 0, 100, 0, 255);
+    // pwr2 = map(power2, 0, 100, 0, 255);
     
     if(!startSet) {
       // Setting start time
