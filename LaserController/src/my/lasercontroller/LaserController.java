@@ -274,7 +274,7 @@ public class LaserController extends javax.swing.JFrame {
                 System.out.println("Disonnected...");
                 btnConnect.setText("Connect");
                 btnExec.setEnabled(false);
-                enable1.setEnabled(true);
+                enable1.setEnabled(false);
                 /*
                 enable2.setEnabled(true);
                 enable3.setEnabled(true);

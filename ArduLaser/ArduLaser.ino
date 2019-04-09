@@ -207,18 +207,25 @@ void loop() {
   
   if(msgReceived) {
     //Serial.flush();
+    digitalWrite(check,HIGH);
+    delay(100);
+    digitalWrite(check,LOW);
+    
     switch(message.charAt(0)) {
       case'T':
         testLaser(message);
         message = "";
+        msgReceived = false;
         break;
       case 'E':
         execute = true;
         message = "";
+        msgReceived = false;
         break;
       case 'O':
         execute = false;
         message = "";
+        msgReceived = false;
         break;
       default:
         break;
