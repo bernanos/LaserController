@@ -275,6 +275,9 @@ public class LaserController extends javax.swing.JFrame {
                 btnConnect.setText("Connect");
                 btnExec.setEnabled(false);
                 enable1.setEnabled(false);
+                
+                // Write code to disable all objects once disconnected
+                
                 /*
                 enable2.setEnabled(true);
                 enable3.setEnabled(true);
