@@ -304,7 +304,7 @@ public class LaserController extends javax.swing.JFrame {
         if (btnTest1.isSelected()){
             int dur = Integer.parseInt(duration1.getText());
             int freq = Integer.parseInt(freq1.getText());
-            String message = String.format("T,%d,%d,%d,", 1, dur, freq);
+            String message = String.format("T,%d,%d,%d,%d,", 1, 1, dur, freq);
             sendData(message);
         }
     }//GEN-LAST:event_duration1ActionPerformed
@@ -316,7 +316,7 @@ public class LaserController extends javax.swing.JFrame {
             // Sent message to arduino to switch laser 1 ON
             int dur = Integer.parseInt(duration1.getText());
             int freq = Integer.parseInt(freq1.getText());
-            String message = String.format("T,%d,%d,%d,", 1, dur, freq);
+            String message = String.format("T,%d,%d,%d,%d,", 1, 1, dur, freq);
             sendData(message);
         } else {
             System.out.println("Laser OFF");
