@@ -69,6 +69,7 @@ public class LaserController extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         duration1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        btnCal1 = new javax.swing.JToggleButton();
         btnConnect = new javax.swing.JButton();
         portDropDown = new javax.swing.JComboBox<>();
         btnExec = new javax.swing.JButton();
@@ -115,6 +116,14 @@ public class LaserController extends javax.swing.JFrame {
 
         jLabel8.setText("Duration");
 
+        btnCal1.setText("Calibrate");
+        btnCal1.setEnabled(false);
+        btnCal1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCal1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout laserPanel1Layout = new javax.swing.GroupLayout(laserPanel1);
         laserPanel1.setLayout(laserPanel1Layout);
         laserPanel1Layout.setHorizontalGroup(
@@ -122,39 +131,40 @@ public class LaserController extends javax.swing.JFrame {
             .addGroup(laserPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTest1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(laserPanel1Layout.createSequentialGroup()
                         .addGroup(laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(freq1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(duration1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
-                        .addGap(0, 6, Short.MAX_VALUE))
-                    .addGroup(laserPanel1Layout.createSequentialGroup()
-                        .addGroup(laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enable1)
                             .addGroup(laserPanel1Layout.createSequentialGroup()
-                                .addComponent(enable1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(btnTest1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                .addGroup(laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(freq1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(duration1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnCal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         laserPanel1Layout.setVerticalGroup(
             laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(laserPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(enable1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(freq1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(laserPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(duration1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTest1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCal1)
+                .addContainerGap())
         );
 
         btnConnect.setText("Connect");
@@ -195,7 +205,7 @@ public class LaserController extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(laserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(portDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConnect))
@@ -324,7 +334,7 @@ public class LaserController extends javax.swing.JFrame {
         } else {
             System.out.println("Laser OFF");
             // Send message to arduino to swich laser 1 OFF
-            String message = "O,1,0,0,0,";
+            String message = "T,1,0,0,0,";
             sendData(message);
         }
     }//GEN-LAST:event_btnTest1ActionPerformed
@@ -335,10 +345,12 @@ public class LaserController extends javax.swing.JFrame {
             btnTest1.setEnabled(true);
             freq1.setEnabled(true);
             duration1.setEnabled(true);
+            btnCal1.setEnabled(true);
         } else {
             btnTest1.setEnabled(false);
             freq1.setEnabled(false);
             duration1.setEnabled(false);
+            btnCal1.setEnabled(false);
         }
     }//GEN-LAST:event_enable1ActionPerformed
 
@@ -351,6 +363,17 @@ public class LaserController extends javax.swing.JFrame {
             sendData(message);
         }
     }//GEN-LAST:event_freq1ActionPerformed
+
+    private void btnCal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCal1ActionPerformed
+        // TODO add your handling code here:
+        if (btnCal1.isSelected()){
+            String message = "C,1,1,";
+            sendData(message);
+        } else {
+            String message = "C,1,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnCal1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,6 +434,7 @@ public class LaserController extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnCal1;
     private javax.swing.JButton btnConnect;
     private javax.swing.JButton btnExec;
     private javax.swing.JToggleButton btnTest1;

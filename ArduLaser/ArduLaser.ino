@@ -58,20 +58,16 @@ void setup() {
   pinMode(check, OUTPUT);
 }
 
-void testLaser(String message){
-
-  digitalWrite(check,HIGH);
-  delay(100);
-  digitalWrite(check,LOW);
-      
+void testLaser(String msgIn){
+   
   char str[8];
   int values[4];
   int ci = 2;
   int vi = 0;
   
-  for (int i = 2; i < message.length(); i++) {
-    if (message.substring(i, i+1) == ",") {
-      String msg = message.substring(ci,i);
+  for (int i = 2; i < msgIn.length(); i++) {
+    if (msgIn.substring(i, i+1) == ",") {
+      String msg = msgIn.substring(ci,i);
       values[vi] = msg.toInt();
       //Serial.println(values[vi]);
       ci=i+1;
@@ -90,6 +86,8 @@ void testLaser(String message){
           epoch1[0] = 1;
           numberOfScans = 1;
           c = 0;
+        } else {
+          laser1_On = false;
         }
         break;
       case 2:
@@ -101,6 +99,8 @@ void testLaser(String message){
           epoch2[0] = 1;
           numberOfScans = 1;
           c = 0;
+        } else {
+          laser2_On = false;
         }
         break;
       case 3:
@@ -114,6 +114,50 @@ void testLaser(String message){
     }
     
   }
+}
+
+void calibrateLaser(String msgIn) {
+  char str[8];
+  int values[4];
+  int ci = 2;
+  int vi = 0;
+  
+  for (int i = 2; i < msgIn.length(); i++) {
+    if (msgIn.substring(i, i+1) == ",") {
+      String msg = msgIn.substring(ci,i);
+      values[vi] = msg.toInt();
+      //Serial.println(values[vi]);
+      ci=i+1;
+      vi++;
+    }
+  }
+
+  if(vi>0){
+    switch (values[0]) {
+      case 1:
+        if(values[1] == 1) {
+          digitalWrite(laser1, HIGH);
+        } else {
+          digitalWrite(laser1, LOW);
+        }
+        break;
+      case 2:
+        if(values[1] == 1) {
+          digitalWrite(laser2, HIGH);
+        } else {
+          digitalWrite(laser2, LOW);
+        }
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+    }
+  }  
 }
 
 void loop() {
@@ -187,7 +231,7 @@ void loop() {
     now = millis();
     if((now - startTime) >= TR){
       c++;
-      if(c==numberOfScans+1){
+      if(c==numberOfScans){
         c = 0;
       }
       startSet = false;
@@ -224,6 +268,11 @@ void loop() {
         break;
       case 'O':
         execute = false;
+        message = "";
+        msgReceived = false;
+        break;
+      case 'C':
+        calibrateLaser(message);
         message = "";
         msgReceived = false;
         break;
