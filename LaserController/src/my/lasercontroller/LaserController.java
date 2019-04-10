@@ -9,15 +9,32 @@ import gnu.io.SerialPort;
 import java.io.OutputStream;
 import gnu.io.CommPortIdentifier;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.zu.ardulink.Link;
 import org.zu.ardulink.gui.ConnectionPanel;
 import org.zu.ardulink.gui.PWMController;
+import java.util.Iterator;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+ 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -30,6 +47,7 @@ public class LaserController extends javax.swing.JFrame {
     private OutputStream output;
     private static final int TIME_OUT = 2000;
     private static final int DATA_RATE = 115200;
+    private static JFileChooser fileChooser = new JFileChooser();
 
     /**
      * Creates new form LaserController
@@ -113,6 +131,10 @@ public class LaserController extends javax.swing.JFrame {
         duration6 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         btnCal6 = new javax.swing.JToggleButton();
+        nOfScans = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuOpenItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -680,6 +702,22 @@ public class LaserController extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        nOfScans.setEditable(false);
+
+        jMenu1.setText("File");
+
+        menuOpenItem.setText("Open");
+        menuOpenItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuOpenItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuOpenItem);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -695,7 +733,9 @@ public class LaserController extends javax.swing.JFrame {
                             .addComponent(btnConnect)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(laserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nOfScans)
+                            .addComponent(laserPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(laserPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -719,7 +759,9 @@ public class LaserController extends javax.swing.JFrame {
                     .addComponent(laserPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(laserPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(laserPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(nOfScans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(portDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConnect))
@@ -729,7 +771,6 @@ public class LaserController extends javax.swing.JFrame {
         );
 
         laserPanel1.getAccessibleContext().setAccessibleName("Laser 2");
-        laserPanel3.getAccessibleContext().setAccessibleName("Laser 3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1201,6 +1242,66 @@ public class LaserController extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCal6ActionPerformed
 
+    private void menuOpenItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOpenItemActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+        int returnValue = jfc.showOpenDialog(null);
+        // int returnValue = jfc.showSaveDialog(null);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            try {
+                File selectedFile = jfc.getSelectedFile();
+                System.out.println(selectedFile.getAbsolutePath());
+                readExcel(selectedFile.getAbsolutePath());
+            } catch (IOException ex) {
+                Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_menuOpenItemActionPerformed
+
+    public void readExcel(String fileName) throws IOException {
+        try {
+
+            FileInputStream excelFile = new FileInputStream(new File(fileName));
+            Workbook workbook = new HSSFWorkbook(excelFile);
+            Sheet datatypeSheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = datatypeSheet.iterator();
+            
+            int nor = datatypeSheet.getLastRowNum();
+            nOfScans.setText(Integer.toString(nor+1));
+            System.out.println(String.format("Number of cells in row  = %d", nor));
+
+            while (iterator.hasNext()) {
+
+                Row currentRow = iterator.next();
+                Iterator<Cell> cellIterator = currentRow.iterator();
+                
+                /*
+
+                while (cellIterator.hasNext()) {
+
+                    Cell currentCell = cellIterator.next();
+                    //getCellTypeEnum shown as deprecated for version 3.15
+                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                    if (currentCell.getCellType() == CellType.STRING) {
+                        System.out.print(currentCell.getStringCellValue() + "--");
+                    } else if (currentCell.getCellType() == CellType.NUMERIC) {
+                        System.out.print(currentCell.getNumericCellValue() + "--");
+                    }
+
+                }
+                System.out.println();
+                */
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1304,12 +1405,16 @@ public class LaserController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel laserPanel1;
     private javax.swing.JPanel laserPanel2;
     private javax.swing.JPanel laserPanel3;
     private javax.swing.JPanel laserPanel4;
     private javax.swing.JPanel laserPanel5;
     private javax.swing.JPanel laserPanel6;
+    private javax.swing.JMenuItem menuOpenItem;
+    private javax.swing.JTextField nOfScans;
     private javax.swing.JComboBox<String> portDropDown;
     // End of variables declaration//GEN-END:variables
 }
