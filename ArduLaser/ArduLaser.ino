@@ -121,6 +121,7 @@ void testLaser(String msgIn){
         } else {
           digitalWrite(laser1, LOW);
           laser1_On = false;
+          epoch1[0] = 0;
           execute = false;
         }
         break;
@@ -136,11 +137,12 @@ void testLaser(String msgIn){
         } else {
           digitalWrite(laser2, LOW);
           laser2_On = false;
+          epoch2[0] = 0;
           execute = false;
         }
         break;
       case 3:
-      if(values[1] == 1) {
+        if(values[1] == 1) {
           duration3 = values[2];
           interval3 = 1000/values[3];
           execute = true;
@@ -151,11 +153,12 @@ void testLaser(String msgIn){
         } else {
           digitalWrite(laser3, LOW);
           laser3_On = false;
+          epoch3[0] = 0;
           execute = false;
         }
         break;
       case 4:
-      if(values[1] == 1) {
+        if(values[1] == 1) {
           duration4 = values[2];
           interval4 = 1000/values[3];
           execute = true;
@@ -166,11 +169,12 @@ void testLaser(String msgIn){
         } else {
           digitalWrite(laser4, LOW);
           laser4_On = false;
+          epoch4[0] = 0;
           execute = false;
         }
         break;
       case 5:
-      if(values[1] == 1) {
+        if(values[1] == 1) {
           duration5 = values[2];
           interval5 = 1000/values[3];
           execute = true;
@@ -181,11 +185,12 @@ void testLaser(String msgIn){
         } else {
           digitalWrite(laser5, LOW);
           laser5_On = false;
+          epoch5[0] = 0;
           execute = false;
         }
         break;
       case 6:
-      if(values[1] == 1) {
+        if(values[1] == 1) {
           duration6 = values[2];
           interval6 = 1000/values[3];
           execute = true;
@@ -196,6 +201,7 @@ void testLaser(String msgIn){
         } else {
           digitalWrite(laser6, LOW);
           laser6_On = false;
+          epoch6[0] = 0;
           execute = false;
         }
         break;
@@ -278,9 +284,6 @@ void loop() {
       // Enabling and switchin on scanner
       scanner_On = true;
       digitalWrite(scanner,HIGH);
-      // Enabling lasers
-      laser1_On = true;
-      laser2_On = true;
       startSet = true;
     }
   
@@ -444,7 +447,7 @@ void loop() {
   if(msgReceived) {
     //Serial.flush();
     digitalWrite(check,HIGH);
-    delay(100);
+    delay(10);
     digitalWrite(check,LOW);
     
     switch(message.charAt(0)) {
