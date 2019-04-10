@@ -119,6 +119,7 @@ void testLaser(String msgIn){
           numberOfScans = 1;
           c = 0;
         } else {
+          digitalWrite(laser1, LOW);
           laser1_On = false;
           execute = false;
         }
@@ -133,6 +134,7 @@ void testLaser(String msgIn){
           numberOfScans = 1;
           c = 0;
         } else {
+          digitalWrite(laser2, LOW);
           laser2_On = false;
           execute = false;
         }
@@ -147,6 +149,7 @@ void testLaser(String msgIn){
           numberOfScans = 1;
           c = 0;
         } else {
+          digitalWrite(laser3, LOW);
           laser3_On = false;
           execute = false;
         }
@@ -161,6 +164,7 @@ void testLaser(String msgIn){
           numberOfScans = 1;
           c = 0;
         } else {
+          digitalWrite(laser4, LOW);
           laser4_On = false;
           execute = false;
         }
@@ -175,6 +179,7 @@ void testLaser(String msgIn){
           numberOfScans = 1;
           c = 0;
         } else {
+          digitalWrite(laser5, LOW);
           laser5_On = false;
           execute = false;
         }
@@ -189,6 +194,7 @@ void testLaser(String msgIn){
           numberOfScans = 1;
           c = 0;
         } else {
+          digitalWrite(laser6, LOW);
           laser6_On = false;
           execute = false;
         }
