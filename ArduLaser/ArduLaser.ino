@@ -43,6 +43,38 @@ bool time2Set = false;
 unsigned long laser2Time;
 int epoch2[99];
 
+// Laser 3 parameters
+int duration3 = 20;
+int interval3 = 100;
+bool laser3_On = false;
+bool time3Set = false;
+unsigned long laser3Time;
+int epoch3[99];
+
+// Laser 4 parameters
+int duration4 = 20;
+int interval4 = 100;
+bool laser4_On = false;
+bool time4Set = false;
+unsigned long laser4Time;
+int epoch4[99];
+
+// Laser 5 parameters
+int duration5 = 20;
+int interval5 = 100;
+bool laser5_On = false;
+bool time5Set = false;
+unsigned long laser5Time;
+int epoch5[99];
+
+// Laser 6 parameters
+int duration6 = 20;
+int interval6 = 100;
+bool laser6_On = false;
+bool time6Set = false;
+unsigned long laser6Time;
+int epoch6[99];
+
 // Setting up message holder
 String message;
 
@@ -106,12 +138,60 @@ void testLaser(String msgIn){
         }
         break;
       case 3:
+      if(values[1] == 1) {
+          duration3 = values[2];
+          interval3 = 1000/values[3];
+          execute = true;
+          laser3_On = true;
+          epoch3[0] = 1;
+          numberOfScans = 1;
+          c = 0;
+        } else {
+          laser3_On = false;
+          execute = false;
+        }
         break;
       case 4:
+      if(values[1] == 1) {
+          duration4 = values[2];
+          interval4 = 1000/values[3];
+          execute = true;
+          laser4_On = true;
+          epoch4[0] = 1;
+          numberOfScans = 1;
+          c = 0;
+        } else {
+          laser4_On = false;
+          execute = false;
+        }
         break;
       case 5:
+      if(values[1] == 1) {
+          duration5 = values[2];
+          interval5 = 1000/values[3];
+          execute = true;
+          laser5_On = true;
+          epoch5[0] = 1;
+          numberOfScans = 1;
+          c = 0;
+        } else {
+          laser5_On = false;
+          execute = false;
+        }
         break;
       case 6:
+      if(values[1] == 1) {
+          duration6 = values[2];
+          interval6 = 1000/values[3];
+          execute = true;
+          laser6_On = true;
+          epoch6[0] = 1;
+          numberOfScans = 1;
+          c = 0;
+        } else {
+          laser6_On = false;
+          execute = false;
+        }
         break;
     }
     
@@ -151,12 +231,32 @@ void calibrateLaser(String msgIn) {
         }
         break;
       case 3:
+      if(values[1] == 1) {
+          digitalWrite(laser3, HIGH);
+        } else {
+          digitalWrite(laser3, LOW);
+        }
         break;
       case 4:
+      if(values[1] == 1) {
+          digitalWrite(laser4, HIGH);
+        } else {
+          digitalWrite(laser4, LOW);
+        }
         break;
       case 5:
+      if(values[1] == 1) {
+          digitalWrite(laser5, HIGH);
+        } else {
+          digitalWrite(laser5, LOW);
+        }
         break;
       case 6:
+      if(values[1] == 1) {
+          digitalWrite(laser6, HIGH);
+        } else {
+          digitalWrite(laser6, LOW);
+        }
         break;
     }
   }  
@@ -226,6 +326,90 @@ void loop() {
       now = millis();
       if((now - laser2Time) >= interval2) {
         laser2_On = true;
+      }
+    }
+
+    // Controlling Laser 3
+    if(epoch3[c] == 1) {
+      if(laser3_On) {
+        if(!time3Set) {
+          digitalWrite(laser3, HIGH);
+          laser3Time = millis();
+          time3Set = true;
+        }
+        now = millis();
+        if((now - laser3Time) >= duration3) {
+          digitalWrite(laser3,LOW);
+          laser3_On = false;
+          time3Set = false;
+        }
+      }
+      now = millis();
+      if((now - laser3Time) >= interval3) {
+        laser3_On = true;
+      }
+    }
+
+    // Controlling Laser 4
+    if(epoch4[c] == 1) {
+      if(laser4_On) {
+        if(!time4Set) {
+          digitalWrite(laser4, HIGH);
+          laser4Time = millis();
+          time4Set = true;
+        }
+        now = millis();
+        if((now - laser4Time) >= duration4) {
+          digitalWrite(laser4,LOW);
+          laser4_On = false;
+          time4Set = false;
+        }
+      }
+      now = millis();
+      if((now - laser4Time) >= interval4) {
+        laser4_On = true;
+      }
+    }
+
+    // Controlling Laser 5
+    if(epoch5[c] == 1) {
+      if(laser5_On) {
+        if(!time5Set) {
+          digitalWrite(laser5, HIGH);
+          laser5Time = millis();
+          time5Set = true;
+        }
+        now = millis();
+        if((now - laser5Time) >= duration5) {
+          digitalWrite(laser5,LOW);
+          laser5_On = false;
+          time5Set = false;
+        }
+      }
+      now = millis();
+      if((now - laser5Time) >= interval5) {
+        laser5_On = true;
+      }
+    }
+
+    // Controlling Laser 6
+    if(epoch6[c] == 1) {
+      if(laser6_On) {
+        if(!time6Set) {
+          digitalWrite(laser6, HIGH);
+          laser6Time = millis();
+          time6Set = true;
+        }
+        now = millis();
+        if((now - laser6Time) >= duration6) {
+          digitalWrite(laser6,LOW);
+          laser6_On = false;
+          time6Set = false;
+        }
+      }
+      now = millis();
+      if((now - laser6Time) >= interval6) {
+        laser6_On = true;
       }
     }
   

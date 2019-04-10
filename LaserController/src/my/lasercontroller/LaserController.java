@@ -81,6 +81,38 @@ public class LaserController extends javax.swing.JFrame {
         duration2 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnCal2 = new javax.swing.JToggleButton();
+        laserPanel3 = new javax.swing.JPanel();
+        enable3 = new javax.swing.JRadioButton();
+        btnTest3 = new javax.swing.JToggleButton();
+        freq3 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        duration3 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        btnCal3 = new javax.swing.JToggleButton();
+        laserPanel4 = new javax.swing.JPanel();
+        enable4 = new javax.swing.JRadioButton();
+        btnTest4 = new javax.swing.JToggleButton();
+        freq4 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        duration4 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        btnCal4 = new javax.swing.JToggleButton();
+        laserPanel5 = new javax.swing.JPanel();
+        enable5 = new javax.swing.JRadioButton();
+        btnTest5 = new javax.swing.JToggleButton();
+        freq5 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        duration5 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        btnCal5 = new javax.swing.JToggleButton();
+        laserPanel6 = new javax.swing.JPanel();
+        enable6 = new javax.swing.JRadioButton();
+        btnTest6 = new javax.swing.JToggleButton();
+        freq6 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        duration6 = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        btnCal6 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -284,6 +316,370 @@ public class LaserController extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        laserPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Laser 3"));
+
+        enable3.setText("Enable");
+        enable3.setEnabled(false);
+        enable3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enable3ActionPerformed(evt);
+            }
+        });
+
+        btnTest3.setText("TEST");
+        btnTest3.setEnabled(false);
+        btnTest3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTest3ActionPerformed(evt);
+            }
+        });
+
+        freq3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        freq3.setText("10");
+        freq3.setEnabled(false);
+        freq3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                freq3ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Freq");
+
+        duration3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        duration3.setText("10");
+        duration3.setEnabled(false);
+        duration3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                duration3ActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("Duration");
+
+        btnCal3.setText("Calibrate");
+        btnCal3.setEnabled(false);
+        btnCal3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCal3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout laserPanel3Layout = new javax.swing.GroupLayout(laserPanel3);
+        laserPanel3.setLayout(laserPanel3Layout);
+        laserPanel3Layout.setHorizontalGroup(
+            laserPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laserPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(laserPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTest3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(laserPanel3Layout.createSequentialGroup()
+                        .addGroup(laserPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enable3)
+                            .addGroup(laserPanel3Layout.createSequentialGroup()
+                                .addGroup(laserPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(freq3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(duration3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(laserPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnCal3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        laserPanel3Layout.setVerticalGroup(
+            laserPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laserPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(enable3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(laserPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(freq3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(laserPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(duration3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTest3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCal3)
+                .addContainerGap())
+        );
+
+        laserPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Laser 4"));
+
+        enable4.setText("Enable");
+        enable4.setEnabled(false);
+        enable4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enable4ActionPerformed(evt);
+            }
+        });
+
+        btnTest4.setText("TEST");
+        btnTest4.setEnabled(false);
+        btnTest4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTest4ActionPerformed(evt);
+            }
+        });
+
+        freq4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        freq4.setText("10");
+        freq4.setEnabled(false);
+        freq4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                freq4ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Freq");
+
+        duration4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        duration4.setText("10");
+        duration4.setEnabled(false);
+        duration4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                duration4ActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("Duration");
+
+        btnCal4.setText("Calibrate");
+        btnCal4.setEnabled(false);
+        btnCal4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCal4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout laserPanel4Layout = new javax.swing.GroupLayout(laserPanel4);
+        laserPanel4.setLayout(laserPanel4Layout);
+        laserPanel4Layout.setHorizontalGroup(
+            laserPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laserPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(laserPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTest4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(laserPanel4Layout.createSequentialGroup()
+                        .addGroup(laserPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enable4)
+                            .addGroup(laserPanel4Layout.createSequentialGroup()
+                                .addGroup(laserPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(freq4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(duration4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(laserPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel15))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnCal4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        laserPanel4Layout.setVerticalGroup(
+            laserPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laserPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(enable4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(laserPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(freq4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(laserPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(duration4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTest4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCal4)
+                .addContainerGap())
+        );
+
+        laserPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Laser 5"));
+
+        enable5.setText("Enable");
+        enable5.setEnabled(false);
+        enable5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enable5ActionPerformed(evt);
+            }
+        });
+
+        btnTest5.setText("TEST");
+        btnTest5.setEnabled(false);
+        btnTest5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTest5ActionPerformed(evt);
+            }
+        });
+
+        freq5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        freq5.setText("10");
+        freq5.setEnabled(false);
+        freq5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                freq5ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Freq");
+
+        duration5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        duration5.setText("10");
+        duration5.setEnabled(false);
+        duration5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                duration5ActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Duration");
+
+        btnCal5.setText("Calibrate");
+        btnCal5.setEnabled(false);
+        btnCal5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCal5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout laserPanel5Layout = new javax.swing.GroupLayout(laserPanel5);
+        laserPanel5.setLayout(laserPanel5Layout);
+        laserPanel5Layout.setHorizontalGroup(
+            laserPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laserPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(laserPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTest5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(laserPanel5Layout.createSequentialGroup()
+                        .addGroup(laserPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enable5)
+                            .addGroup(laserPanel5Layout.createSequentialGroup()
+                                .addGroup(laserPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(freq5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(duration5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(laserPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel17))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnCal5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        laserPanel5Layout.setVerticalGroup(
+            laserPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laserPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(enable5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(laserPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(freq5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(laserPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(duration5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTest5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCal5)
+                .addContainerGap())
+        );
+
+        laserPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Laser 6"));
+
+        enable6.setText("Enable");
+        enable6.setEnabled(false);
+        enable6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enable6ActionPerformed(evt);
+            }
+        });
+
+        btnTest6.setText("TEST");
+        btnTest6.setEnabled(false);
+        btnTest6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTest6ActionPerformed(evt);
+            }
+        });
+
+        freq6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        freq6.setText("10");
+        freq6.setEnabled(false);
+        freq6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                freq6ActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("Freq");
+
+        duration6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        duration6.setText("10");
+        duration6.setEnabled(false);
+        duration6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                duration6ActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setText("Duration");
+
+        btnCal6.setText("Calibrate");
+        btnCal6.setEnabled(false);
+        btnCal6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCal6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout laserPanel6Layout = new javax.swing.GroupLayout(laserPanel6);
+        laserPanel6.setLayout(laserPanel6Layout);
+        laserPanel6Layout.setHorizontalGroup(
+            laserPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laserPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(laserPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTest6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(laserPanel6Layout.createSequentialGroup()
+                        .addGroup(laserPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enable6)
+                            .addGroup(laserPanel6Layout.createSequentialGroup()
+                                .addGroup(laserPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(freq6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(duration6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(laserPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel19))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnCal6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        laserPanel6Layout.setVerticalGroup(
+            laserPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laserPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(enable6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(laserPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(freq6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(laserPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(duration6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTest6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCal6)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -301,8 +697,16 @@ public class LaserController extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(laserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(laserPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                        .addComponent(laserPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laserPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laserPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laserPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laserPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +714,11 @@ public class LaserController extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(laserPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(laserPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(laserPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(laserPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(laserPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(laserPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(laserPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(portDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,6 +729,7 @@ public class LaserController extends javax.swing.JFrame {
         );
 
         laserPanel1.getAccessibleContext().setAccessibleName("Laser 2");
+        laserPanel3.getAccessibleContext().setAccessibleName("Laser 3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -374,12 +783,10 @@ public class LaserController extends javax.swing.JFrame {
                     btnExec.setEnabled(true);
                     enable1.setEnabled(true);
                     enable2.setEnabled(true);
-                    /*
                     enable3.setEnabled(true);
                     enable4.setEnabled(true);
                     enable5.setEnabled(true);
                     enable6.setEnabled(true);
-                    */
 
             } catch (Exception e) {
                 System.out.println("Could not connect...");
@@ -395,13 +802,10 @@ public class LaserController extends javax.swing.JFrame {
                 enable1.setEnabled(false);
                 enable2.setEnabled(false);
                 // Write code to disable all objects once disconnected
-                
-                /*
-                enable3.setEnabled(true);
-                enable4.setEnabled(true);
-                enable5.setEnabled(true);
-                enable6.setEnabled(true);
-                */
+                enable3.setEnabled(false);
+                enable4.setEnabled(false);
+                enable5.setEnabled(false);
+                enable6.setEnabled(false);
             }
         }
     }//GEN-LAST:event_btnConnectActionPerformed
@@ -545,6 +949,258 @@ public class LaserController extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCal2ActionPerformed
 
+    private void enable3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enable3ActionPerformed
+        // TODO add your handling code here:
+        if (enable3.isSelected()) {
+            btnTest3.setEnabled(true);
+            freq3.setEnabled(true);
+            duration3.setEnabled(true);
+            btnCal3.setEnabled(true);
+        } else {
+            btnTest3.setEnabled(false);
+            freq3.setEnabled(false);
+            duration3.setEnabled(false);
+            btnCal3.setEnabled(false);
+        }
+    }//GEN-LAST:event_enable3ActionPerformed
+
+    private void btnTest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest3ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest3.isSelected()){
+            System.out.println("Laser3 ON");
+            // Sent message to arduino to switch laser 1 ON
+            int dur = Integer.parseInt(duration3.getText());
+            int freq = Integer.parseInt(freq3.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 3, 1, dur, freq);
+            sendData(message);
+        } else {
+            System.out.println("Laser3 OFF");
+            // Send message to arduino to swich laser 1 OFF
+            String message = "T,3,0,0,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnTest3ActionPerformed
+
+    private void freq3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freq3ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest3.isSelected()){
+            int dur = Integer.parseInt(duration3.getText());
+            int freq = Integer.parseInt(freq3.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 3, 1, dur, freq);
+            sendData(message);
+        }
+    }//GEN-LAST:event_freq3ActionPerformed
+
+    private void duration3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duration3ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest3.isSelected()){
+            int dur = Integer.parseInt(duration3.getText());
+            int freq = Integer.parseInt(freq3.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 3, 1, dur, freq);
+            sendData(message);
+        }
+    }//GEN-LAST:event_duration3ActionPerformed
+
+    private void btnCal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCal3ActionPerformed
+        // TODO add your handling code here:
+        if (btnCal3.isSelected()){
+            String message = "C,3,1,";
+            sendData(message);
+        } else {
+            String message = "C,3,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnCal3ActionPerformed
+
+    private void enable4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enable4ActionPerformed
+        // TODO add your handling code here:
+        if (enable4.isSelected()) {
+            btnTest4.setEnabled(true);
+            freq4.setEnabled(true);
+            duration4.setEnabled(true);
+            btnCal4.setEnabled(true);
+        } else {
+            btnTest4.setEnabled(false);
+            freq4.setEnabled(false);
+            duration4.setEnabled(false);
+            btnCal4.setEnabled(false);
+        }
+    }//GEN-LAST:event_enable4ActionPerformed
+
+    private void btnTest4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest4ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest4.isSelected()){
+            System.out.println("Laser4 ON");
+            // Sent message to arduino to switch laser 1 ON
+            int dur = Integer.parseInt(duration4.getText());
+            int freq = Integer.parseInt(freq4.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 4, 1, dur, freq);
+            sendData(message);
+        } else {
+            System.out.println("Laser4 OFF");
+            // Send message to arduino to swich laser 1 OFF
+            String message = "T,4,0,0,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnTest4ActionPerformed
+
+    private void freq4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freq4ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest4.isSelected()){
+            int dur = Integer.parseInt(duration4.getText());
+            int freq = Integer.parseInt(freq4.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 4, 1, dur, freq);
+            sendData(message);
+        }
+    }//GEN-LAST:event_freq4ActionPerformed
+
+    private void duration4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duration4ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest4.isSelected()){
+            int dur = Integer.parseInt(duration4.getText());
+            int freq = Integer.parseInt(freq4.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 4, 1, dur, freq);
+            sendData(message);
+        }
+    }//GEN-LAST:event_duration4ActionPerformed
+
+    private void btnCal4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCal4ActionPerformed
+        // TODO add your handling code here:
+        if (btnCal4.isSelected()){
+            String message = "C,4,1,";
+            sendData(message);
+        } else {
+            String message = "C,4,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnCal4ActionPerformed
+
+    private void enable5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enable5ActionPerformed
+        // TODO add your handling code here:
+        if (enable5.isSelected()) {
+            btnTest5.setEnabled(true);
+            freq5.setEnabled(true);
+            duration5.setEnabled(true);
+            btnCal5.setEnabled(true);
+        } else {
+            btnTest5.setEnabled(false);
+            freq5.setEnabled(false);
+            duration5.setEnabled(false);
+            btnCal5.setEnabled(false);
+        }
+    }//GEN-LAST:event_enable5ActionPerformed
+
+    private void btnTest5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest5ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest5.isSelected()){
+            System.out.println("Laser5 ON");
+            // Sent message to arduino to switch laser 1 ON
+            int dur = Integer.parseInt(duration5.getText());
+            int freq = Integer.parseInt(freq5.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 5, 1, dur, freq);
+            sendData(message);
+        } else {
+            System.out.println("Laser5 OFF");
+            // Send message to arduino to swich laser 1 OFF
+            String message = "T,5,0,0,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnTest5ActionPerformed
+
+    private void freq5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freq5ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest5.isSelected()){
+            int dur = Integer.parseInt(duration5.getText());
+            int freq = Integer.parseInt(freq5.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 5, 1, dur, freq);
+            sendData(message);
+        }
+    }//GEN-LAST:event_freq5ActionPerformed
+
+    private void duration5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duration5ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest5.isSelected()){
+            int dur = Integer.parseInt(duration5.getText());
+            int freq = Integer.parseInt(freq5.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 5, 1, dur, freq);
+            sendData(message);
+        }
+    }//GEN-LAST:event_duration5ActionPerformed
+
+    private void btnCal5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCal5ActionPerformed
+        // TODO add your handling code here:
+        if (btnCal5.isSelected()){
+            String message = "C,5,1,";
+            sendData(message);
+        } else {
+            String message = "C,5,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnCal5ActionPerformed
+
+    private void enable6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enable6ActionPerformed
+        // TODO add your handling code here:
+        if (enable6.isSelected()) {
+            btnTest6.setEnabled(true);
+            freq6.setEnabled(true);
+            duration6.setEnabled(true);
+            btnCal6.setEnabled(true);
+        } else {
+            btnTest6.setEnabled(false);
+            freq6.setEnabled(false);
+            duration6.setEnabled(false);
+            btnCal6.setEnabled(false);
+        }
+    }//GEN-LAST:event_enable6ActionPerformed
+
+    private void btnTest6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTest6ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest6.isSelected()){
+            System.out.println("Laser6 ON");
+            // Sent message to arduino to switch laser 1 ON
+            int dur = Integer.parseInt(duration6.getText());
+            int freq = Integer.parseInt(freq6.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 6, 1, dur, freq);
+            sendData(message);
+        } else {
+            System.out.println("Laser6 OFF");
+            // Send message to arduino to swich laser 1 OFF
+            String message = "T,6,0,0,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnTest6ActionPerformed
+
+    private void freq6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freq6ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest6.isSelected()){
+            int dur = Integer.parseInt(duration6.getText());
+            int freq = Integer.parseInt(freq6.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 6, 1, dur, freq);
+            sendData(message);
+        }
+    }//GEN-LAST:event_freq6ActionPerformed
+
+    private void duration6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duration6ActionPerformed
+        // TODO add your handling code here:
+        if (btnTest6.isSelected()){
+            int dur = Integer.parseInt(duration6.getText());
+            int freq = Integer.parseInt(freq6.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 6, 1, dur, freq);
+            sendData(message);
+        }
+    }//GEN-LAST:event_duration6ActionPerformed
+
+    private void btnCal6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCal6ActionPerformed
+        // TODO add your handling code here:
+        if (btnCal6.isSelected()){
+            String message = "C,6,1,";
+            sendData(message);
+        } else {
+            String message = "C,6,0,";
+            sendData(message);
+        }
+    }//GEN-LAST:event_btnCal6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -606,22 +1262,54 @@ public class LaserController extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCal1;
     private javax.swing.JToggleButton btnCal2;
+    private javax.swing.JToggleButton btnCal3;
+    private javax.swing.JToggleButton btnCal4;
+    private javax.swing.JToggleButton btnCal5;
+    private javax.swing.JToggleButton btnCal6;
     private javax.swing.JButton btnConnect;
     private javax.swing.JButton btnExec;
     private javax.swing.JToggleButton btnTest1;
     private javax.swing.JToggleButton btnTest2;
+    private javax.swing.JToggleButton btnTest3;
+    private javax.swing.JToggleButton btnTest4;
+    private javax.swing.JToggleButton btnTest5;
+    private javax.swing.JToggleButton btnTest6;
     private javax.swing.JTextField duration1;
     private javax.swing.JTextField duration2;
+    private javax.swing.JTextField duration3;
+    private javax.swing.JTextField duration4;
+    private javax.swing.JTextField duration5;
+    private javax.swing.JTextField duration6;
     private javax.swing.JRadioButton enable1;
     private javax.swing.JRadioButton enable2;
+    private javax.swing.JRadioButton enable3;
+    private javax.swing.JRadioButton enable4;
+    private javax.swing.JRadioButton enable5;
+    private javax.swing.JRadioButton enable6;
     private javax.swing.JTextField freq1;
     private javax.swing.JTextField freq2;
+    private javax.swing.JTextField freq3;
+    private javax.swing.JTextField freq4;
+    private javax.swing.JTextField freq5;
+    private javax.swing.JTextField freq6;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel laserPanel1;
     private javax.swing.JPanel laserPanel2;
+    private javax.swing.JPanel laserPanel3;
+    private javax.swing.JPanel laserPanel4;
+    private javax.swing.JPanel laserPanel5;
+    private javax.swing.JPanel laserPanel6;
     private javax.swing.JComboBox<String> portDropDown;
     // End of variables declaration//GEN-END:variables
 }
