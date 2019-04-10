@@ -466,7 +466,7 @@ public class LaserController extends javax.swing.JFrame {
         if (btnTest1.isSelected()){
             int dur = Integer.parseInt(duration1.getText());
             int freq = Integer.parseInt(freq1.getText());
-            String message = String.format("T,%d,%d,%d,%d,%d,", 1, 1, dur, freq);
+            String message = String.format("T,%d,%d,%d,%d,", 1, 1, dur, freq);
             sendData(message);
         }
     }//GEN-LAST:event_freq1ActionPerformed
@@ -516,10 +516,22 @@ public class LaserController extends javax.swing.JFrame {
 
     private void freq2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freq2ActionPerformed
         // TODO add your handling code here:
+        if (btnTest2.isSelected()){
+            int dur = Integer.parseInt(duration2.getText());
+            int freq = Integer.parseInt(freq2.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 2, 1, dur, freq);
+            sendData(message);
+        }
     }//GEN-LAST:event_freq2ActionPerformed
 
     private void duration2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duration2ActionPerformed
         // TODO add your handling code here:
+        if (btnTest2.isSelected()){
+            int dur = Integer.parseInt(duration2.getText());
+            int freq = Integer.parseInt(freq2.getText());
+            String message = String.format("T,%d,%d,%d,%d,", 2, 1, dur, freq);
+            sendData(message);
+        }
     }//GEN-LAST:event_duration2ActionPerformed
 
     private void btnCal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCal2ActionPerformed
