@@ -88,6 +88,7 @@ void testLaser(String msgIn){
           c = 0;
         } else {
           laser1_On = false;
+          execute = false;
         }
         break;
       case 2:
@@ -101,6 +102,7 @@ void testLaser(String msgIn){
           c = 0;
         } else {
           laser2_On = false;
+          execute = false;
         }
         break;
       case 3:
