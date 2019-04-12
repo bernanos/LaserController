@@ -10,6 +10,7 @@ int check = 12;
 
 // Setting up epoch controllers
 int c = 0;
+int d = 0;
 
 // Setting up timers
 unsigned long startTime;
@@ -495,6 +496,7 @@ void setupScanner(String msgIn) {
     numberOfDummies = values[1];
     TR = values[2];
     c = 0;
+    d = numberOfDummies;
     Serial.print("Number of scans = ");
     Serial.print(numberOfScans);
     Serial.print(", Number of Dummies = ");
@@ -505,9 +507,9 @@ void setupScanner(String msgIn) {
 }
 
 void loop() {
-  
+
   if(execute) {
-    
+
     if(!startSet) {
       // Setting start time
       startTime = millis();
@@ -525,143 +527,150 @@ void loop() {
         scanner_On = false;
       }
     }
+
+    if(d < 1) {
+      // Controlling Laser 1
+      if(epoch1[c] == 1 && laser1Enabled) {
+        if(laser1_On) {
+          if(!time1Set) {
+            digitalWrite(laser1, HIGH);
+            laser1Time = millis();
+            time1Set = true;
+          }
+          now = millis();
+          if((now - laser1Time) >= duration1) {
+            digitalWrite(laser1,LOW);
+            laser1_On = false;
+            time1Set = false;
+          }
+        }
+        now = millis();
+        if((now - laser1Time) >= interval1) {
+          laser1_On = true;
+        }
+      }
+    
+      // Controlling Laser 2
+      if(epoch2[c] == 1 && laser2Enabled) {
+        if(laser2_On) {
+          if(!time2Set) {
+            digitalWrite(laser2, HIGH);
+            laser2Time = millis();
+            time2Set = true;
+          }
+          now = millis();
+          if((now - laser2Time) >= duration2) {
+            digitalWrite(laser2,LOW);
+            laser2_On = false;
+            time2Set = false;
+          }
+        }
+        now = millis();
+        if((now - laser2Time) >= interval2) {
+          laser2_On = true;
+        }
+      }
   
-    // Controlling Laser 1
-    if(epoch1[c] == 1 && laser1Enabled) {
-      if(laser1_On) {
-        if(!time1Set) {
-          digitalWrite(laser1, HIGH);
-          laser1Time = millis();
-          time1Set = true;
+      // Controlling Laser 3
+      if(epoch3[c] == 1 && laser3Enabled) {
+        if(laser3_On) {
+          if(!time3Set) {
+            digitalWrite(laser3, HIGH);
+            laser3Time = millis();
+            time3Set = true;
+          }
+          now = millis();
+          if((now - laser3Time) >= duration3) {
+            digitalWrite(laser3,LOW);
+            laser3_On = false;
+            time3Set = false;
+          }
         }
         now = millis();
-        if((now - laser1Time) >= duration1) {
-          digitalWrite(laser1,LOW);
-          laser1_On = false;
-          time1Set = false;
+        if((now - laser3Time) >= interval3) {
+          laser3_On = true;
         }
       }
-      now = millis();
-      if((now - laser1Time) >= interval1) {
-        laser1_On = true;
-      }
-    }
   
-    // Controlling Laser 2
-    if(epoch2[c] == 1 && laser2Enabled) {
-      if(laser2_On) {
-        if(!time2Set) {
-          digitalWrite(laser2, HIGH);
-          laser2Time = millis();
-          time2Set = true;
+      // Controlling Laser 4
+      if(epoch4[c] == 1 && laser4Enabled) {
+        if(laser4_On) {
+          if(!time4Set) {
+            digitalWrite(laser4, HIGH);
+            laser4Time = millis();
+            time4Set = true;
+          }
+          now = millis();
+          if((now - laser4Time) >= duration4) {
+            digitalWrite(laser4,LOW);
+            laser4_On = false;
+            time4Set = false;
+          }
         }
         now = millis();
-        if((now - laser2Time) >= duration2) {
-          digitalWrite(laser2,LOW);
-          laser2_On = false;
-          time2Set = false;
+        if((now - laser4Time) >= interval4) {
+          laser4_On = true;
         }
       }
-      now = millis();
-      if((now - laser2Time) >= interval2) {
-        laser2_On = true;
-      }
-    }
-
-    // Controlling Laser 3
-    if(epoch3[c] == 1 && laser3Enabled) {
-      if(laser3_On) {
-        if(!time3Set) {
-          digitalWrite(laser3, HIGH);
-          laser3Time = millis();
-          time3Set = true;
-        }
-        now = millis();
-        if((now - laser3Time) >= duration3) {
-          digitalWrite(laser3,LOW);
-          laser3_On = false;
-          time3Set = false;
-        }
-      }
-      now = millis();
-      if((now - laser3Time) >= interval3) {
-        laser3_On = true;
-      }
-    }
-
-    // Controlling Laser 4
-    if(epoch4[c] == 1 && laser4Enabled) {
-      if(laser4_On) {
-        if(!time4Set) {
-          digitalWrite(laser4, HIGH);
-          laser4Time = millis();
-          time4Set = true;
-        }
-        now = millis();
-        if((now - laser4Time) >= duration4) {
-          digitalWrite(laser4,LOW);
-          laser4_On = false;
-          time4Set = false;
-        }
-      }
-      now = millis();
-      if((now - laser4Time) >= interval4) {
-        laser4_On = true;
-      }
-    }
-
-    // Controlling Laser 5
-    if(epoch5[c] == 1 && laser5Enabled) {
-      if(laser5_On) {
-        if(!time5Set) {
-          digitalWrite(laser5, HIGH);
-          laser5Time = millis();
-          time5Set = true;
-        }
-        now = millis();
-        if((now - laser5Time) >= duration5) {
-          digitalWrite(laser5,LOW);
-          laser5_On = false;
-          time5Set = false;
-        }
-      }
-      now = millis();
-      if((now - laser5Time) >= interval5) {
-        laser5_On = true;
-      }
-    }
-
-    // Controlling Laser 6
-    if(epoch6[c] == 1 && laser6Enabled) {
-      if(laser6_On) {
-        if(!time6Set) {
-          digitalWrite(laser6, HIGH);
-          laser6Time = millis();
-          time6Set = true;
-        }
-        now = millis();
-        if((now - laser6Time) >= duration6) {
-          digitalWrite(laser6,LOW);
-          laser6_On = false;
-          time6Set = false;
-        }
-      }
-      now = millis();
-      if((now - laser6Time) >= interval6) {
-        laser6_On = true;
-      }
-    }
   
+      // Controlling Laser 5
+      if(epoch5[c] == 1 && laser5Enabled) {
+        if(laser5_On) {
+          if(!time5Set) {
+            digitalWrite(laser5, HIGH);
+            laser5Time = millis();
+            time5Set = true;
+          }
+          now = millis();
+          if((now - laser5Time) >= duration5) {
+            digitalWrite(laser5,LOW);
+            laser5_On = false;
+            time5Set = false;
+          }
+        }
+        now = millis();
+        if((now - laser5Time) >= interval5) {
+          laser5_On = true;
+        }
+      }
+  
+      // Controlling Laser 6
+      if(epoch6[c] == 1 && laser6Enabled) {
+        if(laser6_On) {
+          if(!time6Set) {
+            digitalWrite(laser6, HIGH);
+            laser6Time = millis();
+            time6Set = true;
+          }
+          now = millis();
+          if((now - laser6Time) >= duration6) {
+            digitalWrite(laser6,LOW);
+            laser6_On = false;
+            time6Set = false;
+          }
+        }
+        now = millis();
+        if((now - laser6Time) >= interval6) {
+          laser6_On = true;
+        }
+      }
+    }
+    
     // Checking for end of TR
     now = millis();
     if((now - startTime) >= TR){
-      c++;
+      d--;
+      if(d < 0) {
+        c++;
+      }
       if(c==numberOfScans){
         c = 0;
+        d = numberOfDummies;
         execute = false;
       }
       startSet = false;
     }
+      
   } 
 
   while(SerialUSB.available()){
