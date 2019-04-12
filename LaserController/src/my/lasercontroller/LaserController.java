@@ -41,6 +41,12 @@ public class LaserController extends javax.swing.JFrame {
     private static final int TIME_OUT = 2000;
     private static final int DATA_RATE = 115200;
     private static final JFileChooser fileChooser = new JFileChooser();
+    String epoch1 = "";
+    String epoch2 = "";
+    String epoch3 = "";
+    String epoch4 = "";
+    String epoch5 = "";
+    String epoch6 = "";
 
     /**
      * Creates new form LaserController
@@ -783,7 +789,6 @@ public class LaserController extends javax.swing.JFrame {
         });
 
         btnUpload.setText("UPLOAD");
-        btnUpload.setEnabled(false);
         btnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUploadActionPerformed(evt);
@@ -1363,15 +1368,67 @@ public class LaserController extends javax.swing.JFrame {
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
+        String upload1 = "U,1,";
+        String upload2 = "U,2,";
+        String upload3 = "U,3,";
+        String upload4 = "U,4,";
+        String upload5 = "U,5,";
+        String upload6 = "U,6,";
+        
+        if (enable1.isSelected()){
+           upload1 = upload1 + "1,";
+        } else {
+           upload1 = upload1 + "0,";
+        }
+        
+        if (enable2.isSelected()){
+           upload2 = upload2 + "1,";
+        } else {
+           upload2 = upload2 + "0,";
+        }
+        
+        if (enable3.isSelected()){
+           upload3 = upload3 + "1,";
+        } else {
+           upload3 = upload3 + "0,";
+        }
+        
+        if (enable4.isSelected()){
+           upload4 = upload4 + "1,";
+        } else {
+           upload4 = upload4 + "0,";
+        }
+        
+        if (enable5.isSelected()){
+           upload5 = upload5 + "1,";
+        } else {
+           upload5 = upload5 + "0,";
+        }
+        
+        if (enable6.isSelected()){
+           upload6 = upload6 + "1,";
+        } else {
+           upload6 = upload6 + "0,";
+        }
+        
+        upload1 = upload1 + duration1.getText() + "," + freq1.getText() + "," + epoch1;
+        upload2 = upload2 + duration2.getText() + "," + freq2.getText() + "," + epoch2;
+        upload3 = upload3 + duration3.getText() + "," + freq3.getText() + "," + epoch3;
+        upload4 = upload4 + duration4.getText() + "," + freq4.getText() + "," + epoch4;
+        upload5 = upload5 + duration5.getText() + "," + freq5.getText() + "," + epoch5;
+        upload6 = upload6 + duration6.getText() + "," + freq6.getText() + "," + epoch6;
+        
+        sendData(upload1);
+        sendData(upload2);
+        sendData(upload3);
+        sendData(upload4);
+        sendData(upload5);
+        sendData(upload6);
+        
     }//GEN-LAST:event_btnUploadActionPerformed
 
     public void readExcel(String fileName) throws IOException, InterruptedException {
-        String epoch1 = "P,1,";
-        String epoch2 = "P,2,";
-        String epoch3 = "P,3,";
-        String epoch4 = "P,4,";
-        String epoch5 = "P,5,";
-        String epoch6 = "P,6,";
+        
             
         try {
 
@@ -1411,13 +1468,6 @@ public class LaserController extends javax.swing.JFrame {
         } catch (IOException e) {
         }
         
-        sendData(epoch1);
-        sendData(epoch2);
-        sendData(epoch3);
-        sendData(epoch4);
-        sendData(epoch5);
-        sendData(epoch6);
-        
     }
     
     /**
@@ -1456,13 +1506,7 @@ public class LaserController extends javax.swing.JFrame {
         });
     }
     
-    public void setupSystemp(){
-        /**
-         * Will iterate through each laser and send respective parameters
-         * including the paradigm for each channel.
-         * Should receive a confirmation from Arduino
-         */
-    }
+
     
     public void sendData(String message) {
         if(output != null){
@@ -1479,7 +1523,6 @@ public class LaserController extends javax.swing.JFrame {
                 Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

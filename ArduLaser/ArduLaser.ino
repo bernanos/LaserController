@@ -31,6 +31,7 @@ bool scanner_On = false;
 int duration1 = 20;
 int interval1 = 100;
 bool laser1_On = false;
+bool laser1Enabled = false;
 bool time1Set = false;
 unsigned long laser1Time;
 int epoch1[1000];
@@ -39,6 +40,7 @@ int epoch1[1000];
 int duration2 = 20;
 int interval2 = 100;
 bool laser2_On = false;
+bool laser2Enabled = false;
 bool time2Set = false;
 unsigned long laser2Time;
 int epoch2[1000];
@@ -47,6 +49,7 @@ int epoch2[1000];
 int duration3 = 20;
 int interval3 = 100;
 bool laser3_On = false;
+bool laser3Enabled = false;
 bool time3Set = false;
 unsigned long laser3Time;
 int epoch3[1000];
@@ -55,6 +58,7 @@ int epoch3[1000];
 int duration4 = 20;
 int interval4 = 100;
 bool laser4_On = false;
+bool laser4Enabled = false;
 bool time4Set = false;
 unsigned long laser4Time;
 int epoch4[1000];
@@ -63,6 +67,7 @@ int epoch4[1000];
 int duration5 = 20;
 int interval5 = 100;
 bool laser5_On = false;
+bool laser5Enabled = false;
 bool time5Set = false;
 unsigned long laser5Time;
 int epoch5[1000];
@@ -71,6 +76,7 @@ int epoch5[1000];
 int duration6 = 20;
 int interval6 = 100;
 bool laser6_On = false;
+bool laser6Enabled = false;
 bool time6Set = false;
 unsigned long laser6Time;
 int epoch6[1000];
@@ -117,7 +123,7 @@ void testLaser(String msgIn){
           execute = true;
           laser1_On = true;
           epoch1[0] = 1;
-          numberOfScans = 1;
+          numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser1, LOW);
@@ -133,7 +139,7 @@ void testLaser(String msgIn){
           execute = true;
           laser2_On = true;
           epoch2[0] = 1;
-          numberOfScans = 1;
+          numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser2, LOW);
@@ -149,7 +155,7 @@ void testLaser(String msgIn){
           execute = true;
           laser3_On = true;
           epoch3[0] = 1;
-          numberOfScans = 1;
+          numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser3, LOW);
@@ -165,7 +171,7 @@ void testLaser(String msgIn){
           execute = true;
           laser4_On = true;
           epoch4[0] = 1;
-          numberOfScans = 1;
+          numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser4, LOW);
@@ -181,7 +187,7 @@ void testLaser(String msgIn){
           execute = true;
           laser5_On = true;
           epoch5[0] = 1;
-          numberOfScans = 1;
+          numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser5, LOW);
@@ -197,7 +203,7 @@ void testLaser(String msgIn){
           execute = true;
           laser6_On = true;
           epoch6[0] = 1;
-          numberOfScans = 1;
+          numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser6, LOW);
@@ -222,7 +228,6 @@ void calibrateLaser(String msgIn) {
     if (msgIn.substring(i, i+1) == ",") {
       String msg = msgIn.substring(ci,i);
       values[vi] = msg.toInt();
-      //Serial.println(values[vi]);
       ci=i+1;
       vi++;
     }
@@ -295,37 +300,156 @@ void setupParadigm(String msgIn) {
   if(vi>0){
     switch (values[0]) {
       case 1:
-        for(int i = 0; i < vi; i++) {
-          epoch1[i] = values[i+1];
+        Serial.print("Paradigm1 = ");
+        if(values[1] == 1) {
+          laser1_On = true;
+          laser1Enabled = true;
+        } else {
+          laser1_On = false;
+          laser1Enabled = false;
         }
-        numberOfScans = vi-1;
+        duration1 = values[2];
+        interval1 = 1000/values[3];
+        for(int i = 0; i < (vi-4); i++) {
+          epoch1[i] = values[i+4];
+          Serial.print(epoch1[i]);
+        }
+        numberOfScans = vi-4;
+        c = 0;
+        Serial.println("//end");
         Serial.print("Number of scans = ");
         Serial.println(numberOfScans);
+        Serial.print("Enable = ");
+        Serial.print(laser1Enabled);
+        Serial.print(", Duration = ");
+        Serial.print(duration1);
+        Serial.print(", Interval = ");
+        Serial.println(interval1);
         break;
       case 2:
-        for(int i = 0; i < vi; i++) {
-          epoch2[i] = values[i+1];
+        Serial.print("Paradigm2 = ");
+        if(values[1] == 1) {
+          laser2_On = true;
+          laser2Enabled = true;
+        } else {
+          laser2_On = false;
+          laser2Enabled = false;
         }
+        duration2 = values[2];
+        interval2 = 1000/values[3];
+        for(int i = 0; i < (vi-4); i++) {
+          epoch2[i] = values[i+4];
+          Serial.print(epoch2[i]);
+        }
+        Serial.println("//end");
+        Serial.print("Number of scans = ");
+        Serial.println(numberOfScans);
+        Serial.print("Enable = ");
+        Serial.print(laser2Enabled);
+        Serial.print(", Duration = ");
+        Serial.print(duration2);
+        Serial.print(", Interval = ");
+        Serial.println(interval2);
         break;
       case 3:
-        for(int i = 0; i < vi; i++) {
-          epoch3[i] = values[i+1];
+        Serial.print("Paradigm3 = ");
+        if(values[1] == 1) {
+          laser3_On = true;
+          laser3Enabled = true;
+        } else {
+          laser3_On = false;
+          laser3Enabled = false;
         }
+        duration3 = values[2];
+        interval3 = 1000/values[3];
+        for(int i = 0; i < (vi-4); i++) {
+          epoch3[i] = values[i+4];
+          Serial.print(epoch3[i]);
+        }
+        Serial.println("//end");
+        Serial.print("Number of scans = ");
+        Serial.println(numberOfScans);
+        Serial.print("Enable = ");
+        Serial.print(laser3Enabled);
+        Serial.print(", Duration = ");
+        Serial.print(duration3);
+        Serial.print(", Interval = ");
+        Serial.println(interval3);
         break;
       case 4:
-        for(int i = 0; i < vi; i++) {
-          epoch4[i] = values[i+1];
+        Serial.print("Paradigm4 = ");
+        if(values[1] == 1) {
+          laser4_On = true;
+          laser4Enabled = true;
+        } else {
+          laser4_On = false;
+          laser4Enabled = false;
         }
+        duration4 = values[2];
+        interval4 = 1000/values[3];
+        for(int i = 0; i < (vi-4); i++) {
+          epoch4[i] = values[i+4];
+          Serial.print(epoch4[i]);
+        }
+        Serial.println("//end");
+        Serial.print("Number of scans = ");
+        Serial.println(numberOfScans);
+        Serial.print("Enable = ");
+        Serial.print(laser4Enabled);
+        Serial.print(", Duration = ");
+        Serial.print(duration4);
+        Serial.print(", Interval = ");
+        Serial.println(interval4);
         break;
       case 5:
-        for(int i = 0; i < vi; i++) {
-          epoch5[i] = values[i+1];
+        Serial.print("Paradigm5 = ");
+        if(values[1] == 1) {
+          laser5_On = true;
+          laser5Enabled = true;
+        } else {
+          laser5_On = false;
+          laser5Enabled = false;
         }
+        duration5 = values[2];
+        interval5 = 1000/values[3];
+        for(int i = 0; i < (vi-4); i++) {
+          epoch5[i] = values[i+4];
+          Serial.print(epoch5[i]);
+        }
+        Serial.println("//end");
+        Serial.print("Number of scans = ");
+        Serial.println(numberOfScans);
+        Serial.print("Enable = ");
+        Serial.print(laser5Enabled);
+        Serial.print(", Duration = ");
+        Serial.print(duration5);
+        Serial.print(", Interval = ");
+        Serial.println(interval5);
         break;
       case 6:
-        for(int i = 0; i < vi; i++) {
-          epoch6[i] = values[i+1];
+        Serial.print("Paradigm6 = ");
+        if(values[1] == 1) {
+          laser6_On = true;
+          laser6Enabled = true;
+        } else {
+          laser6_On = false;
+          laser6Enabled = false;
         }
+        duration6 = values[2];
+        interval6 = 1000/values[3];
+        for(int i = 0; i < (vi-4); i++) {
+          epoch6[i] = values[i+4];
+          Serial.print(epoch6[i]);
+        }
+        Serial.println("//end");
+        Serial.print("Number of scans = ");
+        Serial.println(numberOfScans);
+        Serial.print("Enable = ");
+        Serial.print(laser6Enabled);
+        Serial.print(", Duration = ");
+        Serial.print(duration6);
+        Serial.print(", Interval = ");
+        Serial.println(interval6);
         break;
     }
   }
@@ -354,7 +478,7 @@ void loop() {
     }
   
     // Controlling Laser 1
-    if(epoch1[c] == 1) {
+    if(epoch1[c] == 1 && laser1Enabled) {
       if(laser1_On) {
         if(!time1Set) {
           digitalWrite(laser1, HIGH);
@@ -375,7 +499,7 @@ void loop() {
     }
   
     // Controlling Laser 2
-    if(epoch2[c] == 1) {
+    if(epoch2[c] == 1 && laser2Enabled) {
       if(laser2_On) {
         if(!time2Set) {
           digitalWrite(laser2, HIGH);
@@ -396,7 +520,7 @@ void loop() {
     }
 
     // Controlling Laser 3
-    if(epoch3[c] == 1) {
+    if(epoch3[c] == 1 && laser3Enabled) {
       if(laser3_On) {
         if(!time3Set) {
           digitalWrite(laser3, HIGH);
@@ -417,7 +541,7 @@ void loop() {
     }
 
     // Controlling Laser 4
-    if(epoch4[c] == 1) {
+    if(epoch4[c] == 1 && laser4Enabled) {
       if(laser4_On) {
         if(!time4Set) {
           digitalWrite(laser4, HIGH);
@@ -438,7 +562,7 @@ void loop() {
     }
 
     // Controlling Laser 5
-    if(epoch5[c] == 1) {
+    if(epoch5[c] == 1 && laser5Enabled) {
       if(laser5_On) {
         if(!time5Set) {
           digitalWrite(laser5, HIGH);
@@ -459,7 +583,7 @@ void loop() {
     }
 
     // Controlling Laser 6
-    if(epoch6[c] == 1) {
+    if(epoch6[c] == 1 && laser6Enabled) {
       if(laser6_On) {
         if(!time6Set) {
           digitalWrite(laser6, HIGH);
@@ -529,7 +653,7 @@ void loop() {
         message = "";
         msgReceived = false;
         break;
-      case 'P':
+      case 'U':
         setupParadigm(message);
         message = "";
         msgReceived = false;
