@@ -314,8 +314,6 @@ void setupParadigm(String msgIn) {
           epoch1[i] = values[i+4];
           Serial.print(epoch1[i]);
         }
-        numberOfScans = vi-4;
-        c = 0;
         Serial.println("//end");
         Serial.print("Number of scans = ");
         Serial.println(numberOfScans);
@@ -453,6 +451,36 @@ void setupParadigm(String msgIn) {
         break;
     }
   }
+}
+
+void setupScanner(String msgIn) {
+
+  Serial.println(msgIn);
+  int values[3];
+  int ci = 2;
+  int vi = 0;
+  
+  for (int i = 2; i < msgIn.length(); i++) {
+    if (msgIn.substring(i, i+1) == ",") {
+      String msg = msgIn.substring(ci,i);
+      values[vi] = msg.toInt();
+      ci=i+1;
+      vi++;
+    }
+  }
+
+  if(vi>0){
+    numberOfScans = values[0];
+    numberOfDummies = values[1];
+    TR = values[2];
+    c = 0;
+    Serial.print("Number of scans = ");
+    Serial.print(numberOfScans);
+    Serial.print(", Number of Dummies = ");
+    Serial.print(numberOfDummies);
+    Serial.print(", TR(ms) = ");
+    Serial.println(TR);
+  }  
 }
 
 void loop() {
@@ -655,6 +683,11 @@ void loop() {
         break;
       case 'U':
         setupParadigm(message);
+        message = "";
+        msgReceived = false;
+        break;
+      case 'S':
+        setupScanner(message);
         message = "";
         msgReceived = false;
         break;

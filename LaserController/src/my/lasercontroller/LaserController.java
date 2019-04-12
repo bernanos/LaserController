@@ -789,6 +789,7 @@ public class LaserController extends javax.swing.JFrame {
         });
 
         btnUpload.setText("UPLOAD");
+        btnUpload.setEnabled(false);
         btnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUploadActionPerformed(evt);
@@ -928,6 +929,7 @@ public class LaserController extends javax.swing.JFrame {
                     System.out.println("Connected...");
                     btnConnect.setText("Disconnect");
                     btnExec.setEnabled(true);
+                    btnUpload.setEnabled(true);
                     enable1.setEnabled(true);
                     enable2.setEnabled(true);
                     enable3.setEnabled(true);
@@ -946,6 +948,7 @@ public class LaserController extends javax.swing.JFrame {
                 System.out.println("Disonnected...");
                 btnConnect.setText("Connect");
                 btnExec.setEnabled(false);
+                btnUpload.setEnabled(false);
                 enable1.setEnabled(false);
                 enable2.setEnabled(false);
                 // Write code to disable all objects once disconnected
@@ -1368,6 +1371,11 @@ public class LaserController extends javax.swing.JFrame {
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
+        // Setting up scanner
+        String scanner = "S," + nOfScans.getText() + "," + dummiesField.getText() + "," + trField.getText() + ",";
+        sendData(scanner);
+        
+        // Setting Up Lasers
         String upload1 = "U,1,";
         String upload2 = "U,2,";
         String upload3 = "U,3,";
@@ -1429,6 +1437,12 @@ public class LaserController extends javax.swing.JFrame {
 
     public void readExcel(String fileName) throws IOException, InterruptedException {
         
+        epoch1 = "";
+        epoch2 = "";
+        epoch3 = "";
+        epoch4 = "";
+        epoch5 = "";
+        epoch6 = "";
             
         try {
 
