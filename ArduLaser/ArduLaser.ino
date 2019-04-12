@@ -86,7 +86,7 @@ String message;
 
 void setup() {
   Serial.begin(115200);
-  SerialUSB.begin(115200);
+  SerialUSB.begin(210000);
   pinMode(laser1, OUTPUT);
   pinMode(laser2, OUTPUT);
   pinMode(laser3, OUTPUT);

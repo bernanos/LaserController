@@ -39,7 +39,7 @@ public class LaserController extends javax.swing.JFrame {
     SerialPort serialPort;
     private OutputStream output;
     private static final int TIME_OUT = 2000;
-    private static final int DATA_RATE = 115200;
+    private static final int DATA_RATE = 210000;
     private static final JFileChooser fileChooser = new JFileChooser();
     String epoch1 = "";
     String epoch2 = "";
