@@ -33,7 +33,7 @@ int interval1 = 100;
 bool laser1_On = false;
 bool time1Set = false;
 unsigned long laser1Time;
-int epoch1[99];
+int epoch1[1000];
 
 // Laser 2 parameters
 int duration2 = 20;
@@ -41,7 +41,7 @@ int interval2 = 100;
 bool laser2_On = false;
 bool time2Set = false;
 unsigned long laser2Time;
-int epoch2[99];
+int epoch2[1000];
 
 // Laser 3 parameters
 int duration3 = 20;
@@ -49,7 +49,7 @@ int interval3 = 100;
 bool laser3_On = false;
 bool time3Set = false;
 unsigned long laser3Time;
-int epoch3[99];
+int epoch3[1000];
 
 // Laser 4 parameters
 int duration4 = 20;
@@ -57,7 +57,7 @@ int interval4 = 100;
 bool laser4_On = false;
 bool time4Set = false;
 unsigned long laser4Time;
-int epoch4[99];
+int epoch4[1000];
 
 // Laser 5 parameters
 int duration5 = 20;
@@ -65,7 +65,7 @@ int interval5 = 100;
 bool laser5_On = false;
 bool time5Set = false;
 unsigned long laser5Time;
-int epoch5[99];
+int epoch5[1000];
 
 // Laser 6 parameters
 int duration6 = 20;
@@ -73,13 +73,14 @@ int interval6 = 100;
 bool laser6_On = false;
 bool time6Set = false;
 unsigned long laser6Time;
-int epoch6[99];
+int epoch6[1000];
 
 // Setting up message holder
 String message;
 
 void setup() {
   Serial.begin(115200);
+  SerialUSB.begin(115200);
   pinMode(laser1, OUTPUT);
   pinMode(laser2, OUTPUT);
   pinMode(laser3, OUTPUT);
@@ -91,8 +92,8 @@ void setup() {
 }
 
 void testLaser(String msgIn){
-   
-  char str[8];
+
+  Serial.println(msgIn); 
   int values[4];
   int ci = 2;
   int vi = 0;
@@ -211,7 +212,8 @@ void testLaser(String msgIn){
 }
 
 void calibrateLaser(String msgIn) {
-  char str[8];
+
+  Serial.println(msgIn);
   int values[4];
   int ci = 2;
   int vi = 0;
@@ -243,28 +245,28 @@ void calibrateLaser(String msgIn) {
         }
         break;
       case 3:
-      if(values[1] == 1) {
+        if(values[1] == 1) {
           digitalWrite(laser3, HIGH);
         } else {
           digitalWrite(laser3, LOW);
         }
         break;
       case 4:
-      if(values[1] == 1) {
+        if(values[1] == 1) {
           digitalWrite(laser4, HIGH);
         } else {
           digitalWrite(laser4, LOW);
         }
         break;
       case 5:
-      if(values[1] == 1) {
+        if(values[1] == 1) {
           digitalWrite(laser5, HIGH);
         } else {
           digitalWrite(laser5, LOW);
         }
         break;
       case 6:
-      if(values[1] == 1) {
+        if(values[1] == 1) {
           digitalWrite(laser6, HIGH);
         } else {
           digitalWrite(laser6, LOW);
@@ -272,6 +274,53 @@ void calibrateLaser(String msgIn) {
         break;
     }
   }  
+}
+
+void setupParadigm(String msgIn) {
+
+  Serial.println(msgIn);
+  int values[1000];
+  int ci = 2;
+  int vi = 0;
+  
+  for (int i = 2; i < msgIn.length(); i++) {
+    if (msgIn.substring(i, i+1) == ",") {
+      String msg = msgIn.substring(ci,i);
+      values[vi] = msg.toInt();
+      //Serial.println(values[vi]);
+      ci=i+1;
+      vi++;
+    }
+  }
+
+  if(vi>0){
+    switch (values[0]) {
+      case 1:
+        for(int i = 0; i < vi; i++) {
+          epoch1[i] = values[i+1];
+        }
+        execute = true;
+        laser1_On = true;
+        numberOfScans = vi;
+        c = 0;
+        break;
+      case 2:
+        
+        break;
+      case 3:
+      
+        break;
+      case 4:
+      
+        break;
+      case 5:
+      
+        break;
+      case 6:
+      
+        break;
+    }
+  }
 }
 
 void loop() {
@@ -426,17 +475,18 @@ void loop() {
     now = millis();
     if((now - startTime) >= TR){
       c++;
-      if(c==numberOfScans){
+      if(c>numberOfScans){
         c = 0;
+        execute = false;
       }
       startSet = false;
     }
   } 
 
-  while(Serial.available()){
+  while(SerialUSB.available()){
     delay(10);
-    if(Serial.available() > 0){
-      char inData = Serial.read();
+    if(SerialUSB.available() > 0){
+      char inData = SerialUSB.read();
       message += inData;
     }
     if(!msgReceived) {
@@ -449,7 +499,8 @@ void loop() {
     digitalWrite(check,HIGH);
     delay(10);
     digitalWrite(check,LOW);
-    
+
+    Serial.println(message);
     switch(message.charAt(0)) {
       case'T':
         testLaser(message);
@@ -471,9 +522,13 @@ void loop() {
         message = "";
         msgReceived = false;
         break;
+      case 'P':
+        setupParadigm(message);
+        message = "";
+        msgReceived = false;
+        break;
       default:
         break;
     }
   }  
 }
-

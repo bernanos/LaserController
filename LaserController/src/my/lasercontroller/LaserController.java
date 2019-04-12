@@ -27,6 +27,7 @@ import org.zu.ardulink.Link;
 import org.zu.ardulink.gui.ConnectionPanel;
 import org.zu.ardulink.gui.PWMController;
 import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  
 import org.apache.poi.ss.usermodel.Cell;
@@ -1364,6 +1365,8 @@ public class LaserController extends javax.swing.JFrame {
                 readExcel(selectedFile.getAbsolutePath());
             } catch (IOException ex) {
                 Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_menuOpenItemActionPerformed
@@ -1372,7 +1375,14 @@ public class LaserController extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUploadActionPerformed
 
-    public void readExcel(String fileName) throws IOException {
+    public void readExcel(String fileName) throws IOException, InterruptedException {
+        String epoch1 = "P,1,";
+        String epoch2 = "P,2,";
+        String epoch3 = "P,3,";
+        String epoch4 = "P,4,";
+        String epoch5 = "P,5,";
+        String epoch6 = "P,6,";
+            
         try {
 
             FileInputStream excelFile = new FileInputStream(new File(fileName));
@@ -1382,36 +1392,49 @@ public class LaserController extends javax.swing.JFrame {
             
             int nor = datatypeSheet.getLastRowNum();
             nOfScans.setText(Integer.toString(nor+1));
-            System.out.println(String.format("Number of cells in row  = %d", nor));
-
+            
             while (iterator.hasNext()) {
 
                 Row currentRow = iterator.next();
                 Iterator<Cell> cellIterator = currentRow.iterator();
+                int[] valuesBuffer = new int[6];
+                int c = 0;
                 
-                /*
-
                 while (cellIterator.hasNext()) {
 
                     Cell currentCell = cellIterator.next();
-                    //getCellTypeEnum shown as deprecated for version 3.15
-                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
-                    if (currentCell.getCellType() == CellType.STRING) {
-                        System.out.print(currentCell.getStringCellValue() + "--");
-                    } else if (currentCell.getCellType() == CellType.NUMERIC) {
-                        System.out.print(currentCell.getNumericCellValue() + "--");
-                    }
+                    valuesBuffer[c] = (int)currentCell.getNumericCellValue();
+                    c++;
 
                 }
-                System.out.println();
-                */
+                
+                epoch1 = epoch1 + valuesBuffer[0] + ",";
+                epoch2 = epoch2 + valuesBuffer[1] + ",";
+                epoch3 = epoch3 + valuesBuffer[2] + ",";
+                epoch4 = epoch4 + valuesBuffer[3] + ",";
+                epoch5 = epoch5 + valuesBuffer[4] + ",";
+                epoch6 = epoch6 + valuesBuffer[5] + ",";
 
             }
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        sendData(epoch1);
+        TimeUnit.SECONDS.sleep(1);
+        sendData(epoch2);
+        TimeUnit.SECONDS.sleep(1);
+        sendData(epoch3);
+        TimeUnit.SECONDS.sleep(1);
+        sendData(epoch4);
+        TimeUnit.SECONDS.sleep(1);
+        sendData(epoch5);
+       TimeUnit.SECONDS.sleep(1);
+        sendData(epoch6);
+        
     }
     
     /**
