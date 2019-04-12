@@ -86,7 +86,8 @@ String message;
 
 void setup() {
   Serial.begin(115200);
-  SerialUSB.begin(210000);
+  SerialUSB.begin(921600);
+  while(!SerialUSB);
   pinMode(laser1, OUTPUT);
   pinMode(laser2, OUTPUT);
   pinMode(laser3, OUTPUT);
@@ -644,7 +645,6 @@ void loop() {
   } 
 
   while(SerialUSB.available()){
-    delay(10);
     if(SerialUSB.available() > 0){
       char inData = SerialUSB.read();
       message += inData;
@@ -655,7 +655,7 @@ void loop() {
   }      
   
   if(msgReceived) {
-    //Serial.flush();
+    Serial.flush();
     digitalWrite(check,HIGH);
     delay(10);
     digitalWrite(check,LOW);

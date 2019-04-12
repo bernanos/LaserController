@@ -39,7 +39,7 @@ public class LaserController extends javax.swing.JFrame {
     SerialPort serialPort;
     private OutputStream output;
     private static final int TIME_OUT = 2000;
-    private static final int DATA_RATE = 210000;
+    private static final int DATA_RATE = 921600;
     private static final JFileChooser fileChooser = new JFileChooser();
     String epoch1 = "";
     String epoch2 = "";
@@ -1373,7 +1373,6 @@ public class LaserController extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Setting up scanner
         String scanner = "S," + nOfScans.getText() + "," + dummiesField.getText() + "," + trField.getText() + ",";
-        sendData(scanner);
         
         // Setting Up Lasers
         String upload1 = "U,1,";
@@ -1426,6 +1425,7 @@ public class LaserController extends javax.swing.JFrame {
         upload5 = upload5 + duration5.getText() + "," + freq5.getText() + "," + epoch5;
         upload6 = upload6 + duration6.getText() + "," + freq6.getText() + "," + epoch6;
         
+        sendData(scanner);
         sendData(upload1);
         sendData(upload2);
         sendData(upload3);
@@ -1528,12 +1528,10 @@ public class LaserController extends javax.swing.JFrame {
                 // Add code to send data
                 System.out.println(message);
                 output.write(message.getBytes());
-                TimeUnit.SECONDS.sleep(1);
-                //output.flush();
+                //TimeUnit.SECONDS.sleep(1);
+                output.flush();
             } catch (IOException ex) {
                 System.out.println("Could not send message...");
-                Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InterruptedException ex) {
                 Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
