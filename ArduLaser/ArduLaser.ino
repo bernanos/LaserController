@@ -100,12 +100,11 @@ void setup() {
 
 void testLaser(String msgIn){
 
-  Serial.println(msgIn); 
   int values[4];
   int ci = 2;
   int vi = 0;
   
-  for (int i = 2; i < msgIn.length(); i++) {
+  for (int i = 2; i < msgIn.length()-1; i++) {
     if (msgIn.substring(i, i+1) == ",") {
       String msg = msgIn.substring(ci,i);
       values[vi] = msg.toInt();
@@ -123,13 +122,17 @@ void testLaser(String msgIn){
           interval1 = 1000/values[3];
           execute = true;
           laser1_On = true;
-          epoch1[0] = 1;
+          laser1Enabled = true;
+          for(int i=0; i<=60; i++) {
+            epoch1[i] = 1;
+          }
           numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser1, LOW);
           laser1_On = false;
-          epoch1[0] = 0;
+          laser1Enabled = false;
+          memset(epoch1, 0, sizeof(epoch1));
           execute = false;
         }
         break;
@@ -139,13 +142,17 @@ void testLaser(String msgIn){
           interval2 = 1000/values[3];
           execute = true;
           laser2_On = true;
-          epoch2[0] = 1;
+          laser2Enabled = true;
+          for(int i=0; i<=60; i++) {
+            epoch2[i] = 1;
+          }
           numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser2, LOW);
           laser2_On = false;
-          epoch2[0] = 0;
+          laser2Enabled = false;
+          memset(epoch2, 0, sizeof(epoch2));
           execute = false;
         }
         break;
@@ -155,13 +162,17 @@ void testLaser(String msgIn){
           interval3 = 1000/values[3];
           execute = true;
           laser3_On = true;
-          epoch3[0] = 1;
+          laser3Enabled = true;
+          for(int i=0; i<=60; i++) {
+            epoch3[i] = 1;
+          }
           numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser3, LOW);
           laser3_On = false;
-          epoch3[0] = 0;
+          laser3Enabled = false;
+          memset(epoch3, 0, sizeof(epoch3));
           execute = false;
         }
         break;
@@ -171,13 +182,17 @@ void testLaser(String msgIn){
           interval4 = 1000/values[3];
           execute = true;
           laser4_On = true;
-          epoch4[0] = 1;
+          laser4Enabled = true;
+          for(int i=0; i<=60; i++) {
+            epoch4[i] = 1;
+          }
           numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser4, LOW);
           laser4_On = false;
-          epoch4[0] = 0;
+          laser4Enabled = false;
+          memset(epoch4, 0, sizeof(epoch4));
           execute = false;
         }
         break;
@@ -187,13 +202,17 @@ void testLaser(String msgIn){
           interval5 = 1000/values[3];
           execute = true;
           laser5_On = true;
-          epoch5[0] = 1;
+          laser5Enabled = true;
+          for(int i=0; i<=60; i++) {
+            epoch5[i] = 1;
+          }
           numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser5, LOW);
           laser5_On = false;
-          epoch5[0] = 0;
+          laser5Enabled = false;
+          memset(epoch5, 0, sizeof(epoch5));
           execute = false;
         }
         break;
@@ -203,13 +222,17 @@ void testLaser(String msgIn){
           interval6 = 1000/values[3];
           execute = true;
           laser6_On = true;
-          epoch6[0] = 1;
+          laser6Enabled = true;
+          for(int i=0; i<=60; i++) {
+            epoch6[i] = 1;
+          }
           numberOfScans = 60;
           c = 0;
         } else {
           digitalWrite(laser6, LOW);
           laser6_On = false;
-          epoch6[0] = 0;
+          laser6Enabled = false;
+          memset(epoch6, 0, sizeof(epoch6));
           execute = false;
         }
         break;
@@ -220,12 +243,11 @@ void testLaser(String msgIn){
 
 void calibrateLaser(String msgIn) {
 
-  Serial.println(msgIn);
   int values[4];
   int ci = 2;
   int vi = 0;
   
-  for (int i = 2; i < msgIn.length(); i++) {
+  for (int i = 2; i < msgIn.length()-1; i++) {
     if (msgIn.substring(i, i+1) == ",") {
       String msg = msgIn.substring(ci,i);
       values[vi] = msg.toInt();
@@ -284,12 +306,11 @@ void calibrateLaser(String msgIn) {
 
 void setupParadigm(String msgIn) {
 
-  Serial.println(msgIn);
   int values[1000];
   int ci = 2;
   int vi = 0;
   
-  for (int i = 2; i < msgIn.length(); i++) {
+  for (int i = 2; i < msgIn.length()-1; i++) {
     if (msgIn.substring(i, i+1) == ",") {
       String msg = msgIn.substring(ci,i);
       values[vi] = msg.toInt();
@@ -456,12 +477,11 @@ void setupParadigm(String msgIn) {
 
 void setupScanner(String msgIn) {
 
-  Serial.println(msgIn);
   int values[3];
   int ci = 2;
   int vi = 0;
   
-  for (int i = 2; i < msgIn.length(); i++) {
+  for (int i = 2; i < msgIn.length()-1; i++) {
     if (msgIn.substring(i, i+1) == ",") {
       String msg = msgIn.substring(ci,i);
       values[vi] = msg.toInt();
@@ -648,17 +668,20 @@ void loop() {
     if(SerialUSB.available() > 0){
       char inData = SerialUSB.read();
       message += inData;
-    }
-    if(!msgReceived) {
-      msgReceived = true;
+      if(inData == '&') {
+        msgReceived = true;
+        break;
+      }
     }
   }      
   
   if(msgReceived) {
+    
     Serial.flush();
     digitalWrite(check,HIGH);
     delay(10);
     digitalWrite(check,LOW);
+    Serial.println(message);
 
     switch(message.charAt(0)) {
       case'T':
@@ -675,6 +698,12 @@ void loop() {
         execute = false;
         message = "";
         msgReceived = false;
+        digitalWrite(laser1, LOW);
+        digitalWrite(laser2, LOW);
+        digitalWrite(laser3, LOW);
+        digitalWrite(laser4, LOW);
+        digitalWrite(laser5, LOW);
+        digitalWrite(laser6, LOW);
         break;
       case 'C':
         calibrateLaser(message);

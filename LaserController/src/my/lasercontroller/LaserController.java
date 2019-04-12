@@ -1523,6 +1523,7 @@ public class LaserController extends javax.swing.JFrame {
 
     
     public void sendData(String message) {
+        message = message + "&";
         if(output != null){
             try {
                 // Add code to send data
