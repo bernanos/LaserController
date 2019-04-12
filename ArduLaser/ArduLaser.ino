@@ -287,7 +287,6 @@ void setupParadigm(String msgIn) {
     if (msgIn.substring(i, i+1) == ",") {
       String msg = msgIn.substring(ci,i);
       values[vi] = msg.toInt();
-      //Serial.println(values[vi]);
       ci=i+1;
       vi++;
     }
@@ -299,6 +298,9 @@ void setupParadigm(String msgIn) {
         for(int i = 0; i < vi; i++) {
           epoch1[i] = values[i+1];
         }
+        numberOfScans = vi-1;
+        Serial.print("Number of scans = ");
+        Serial.println(numberOfScans);
         break;
       case 2:
         for(int i = 0; i < vi; i++) {
@@ -481,7 +483,7 @@ void loop() {
     now = millis();
     if((now - startTime) >= TR){
       c++;
-      if(c>numberOfScans){
+      if(c==numberOfScans){
         c = 0;
         execute = false;
       }
@@ -506,7 +508,6 @@ void loop() {
     delay(10);
     digitalWrite(check,LOW);
 
-    Serial.println(message);
     switch(message.charAt(0)) {
       case'T':
         testLaser(message);
