@@ -299,25 +299,31 @@ void setupParadigm(String msgIn) {
         for(int i = 0; i < vi; i++) {
           epoch1[i] = values[i+1];
         }
-        execute = true;
-        laser1_On = true;
-        numberOfScans = vi;
-        c = 0;
         break;
       case 2:
-        
+        for(int i = 0; i < vi; i++) {
+          epoch2[i] = values[i+1];
+        }
         break;
       case 3:
-      
+        for(int i = 0; i < vi; i++) {
+          epoch3[i] = values[i+1];
+        }
         break;
       case 4:
-      
+        for(int i = 0; i < vi; i++) {
+          epoch4[i] = values[i+1];
+        }
         break;
       case 5:
-      
+        for(int i = 0; i < vi; i++) {
+          epoch5[i] = values[i+1];
+        }
         break;
       case 6:
-      
+        for(int i = 0; i < vi; i++) {
+          epoch6[i] = values[i+1];
+        }
         break;
     }
   }

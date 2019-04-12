@@ -8,34 +8,26 @@ package my.lasercontroller;
 import gnu.io.SerialPort;
 import java.io.OutputStream;
 import gnu.io.CommPortIdentifier;
-import java.io.BufferedReader;
+import gnu.io.PortInUseException;
+import gnu.io.UnsupportedCommOperationException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.zu.ardulink.Link;
-import org.zu.ardulink.gui.ConnectionPanel;
-import org.zu.ardulink.gui.PWMController;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -48,7 +40,7 @@ public class LaserController extends javax.swing.JFrame {
     private OutputStream output;
     private static final int TIME_OUT = 2000;
     private static final int DATA_RATE = 115200;
-    private static JFileChooser fileChooser = new JFileChooser();
+    private static final JFileChooser fileChooser = new JFileChooser();
 
     /**
      * Creates new form LaserController
@@ -938,7 +930,7 @@ public class LaserController extends javax.swing.JFrame {
                     enable5.setEnabled(true);
                     enable6.setEnabled(true);
 
-            } catch (Exception e) {
+            } catch (PortInUseException | UnsupportedCommOperationException | IOException e) {
                 System.out.println("Could not connect...");
                 System.err.println(e.toString());
             }
@@ -962,7 +954,7 @@ public class LaserController extends javax.swing.JFrame {
 
     private void btnExecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExecActionPerformed
         // TODO add your handling code here:
-        if(btnExec.getText() == "Execute") {
+        if("Execute".equals(btnExec.getText())) {
             String message = "E,";
             sendData(message);
             btnExec.setText("Stop");
@@ -1363,9 +1355,7 @@ public class LaserController extends javax.swing.JFrame {
                 File selectedFile = jfc.getSelectedFile();
                 System.out.println(selectedFile.getAbsolutePath());
                 readExcel(selectedFile.getAbsolutePath());
-            } catch (IOException ex) {
-                Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InterruptedException ex) {
+            } catch (IOException | InterruptedException ex) {
                 Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -1418,21 +1408,14 @@ public class LaserController extends javax.swing.JFrame {
             }
             
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
         }
         
         sendData(epoch1);
-        TimeUnit.SECONDS.sleep(1);
         sendData(epoch2);
-        TimeUnit.SECONDS.sleep(1);
         sendData(epoch3);
-        TimeUnit.SECONDS.sleep(1);
         sendData(epoch4);
-        TimeUnit.SECONDS.sleep(1);
         sendData(epoch5);
-       TimeUnit.SECONDS.sleep(1);
         sendData(epoch6);
         
     }
@@ -1481,18 +1464,22 @@ public class LaserController extends javax.swing.JFrame {
          */
     }
     
-    public void sendData(String message){
+    public void sendData(String message) {
         if(output != null){
             try {
                 // Add code to send data
                 System.out.println(message);
                 output.write(message.getBytes());
+                TimeUnit.SECONDS.sleep(1);
                 //output.flush();
             } catch (IOException ex) {
                 System.out.println("Could not send message...");
                 Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LaserController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
