@@ -22,7 +22,8 @@ bool execute = false;
 bool msgReceived = false;
 
 // Scanner parameters
-int TR = 1000;
+int TR = 960;
+int IS = 1000;
 int scannerDuration = 10;
 int numberOfScans = 20;
 int numberOfDummies = 10;
@@ -478,7 +479,7 @@ void setupParadigm(String msgIn) {
 
 void setupScanner(String msgIn) {
 
-  int values[3];
+  int values[4];
   int ci = 2;
   int vi = 0;
   
@@ -495,6 +496,9 @@ void setupScanner(String msgIn) {
     numberOfScans = values[0];
     numberOfDummies = values[1];
     TR = values[2];
+    IS = values[3];
+    scannerDuration = IS - TR;
+    
     c = 0;
     d = numberOfDummies;
     Serial.print("Number of scans = ");
@@ -502,7 +506,9 @@ void setupScanner(String msgIn) {
     Serial.print(", Number of Dummies = ");
     Serial.print(numberOfDummies);
     Serial.print(", TR(ms) = ");
-    Serial.println(TR);
+    Serial.print(TR);
+    Serial.print(", Inter Stimulus (ms) = ");
+    Serial.println(IS);
   }  
 }
 
@@ -656,9 +662,9 @@ void loop() {
       }
     }
     
-    // Checking for end of TR
+    // Checking for end of Epoch
     now = millis();
-    if((now - startTime) >= TR){
+    if((now - startTime) >= IS){
       d--;
       if(d < 0) {
         c++;
@@ -713,6 +719,8 @@ void loop() {
         digitalWrite(laser4, LOW);
         digitalWrite(laser5, LOW);
         digitalWrite(laser6, LOW);
+        c = 0;
+        d = numberOfDummies;
         break;
       case 'C':
         calibrateLaser(message);
