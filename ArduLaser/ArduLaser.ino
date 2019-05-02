@@ -497,7 +497,7 @@ void setupScanner(String msgIn) {
     numberOfDummies = values[1];
     TR = values[2];
     IS = values[3];
-    scannerDuration = IS - TR;
+    scannerDuration = TR;
     
     c = 0;
     d = numberOfDummies;
