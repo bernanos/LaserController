@@ -719,6 +719,7 @@ void loop() {
         digitalWrite(laser4, LOW);
         digitalWrite(laser5, LOW);
         digitalWrite(laser6, LOW);
+        digitalWrite(scanner, LOW);
         c = 0;
         d = numberOfDummies;
         break;
